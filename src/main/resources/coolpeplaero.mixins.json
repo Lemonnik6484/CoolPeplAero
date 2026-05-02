@@ -2,7 +2,9 @@
   "required": true,
   "package": "dev.lemonnik.coolpeplaero.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "SteeringWheelMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },

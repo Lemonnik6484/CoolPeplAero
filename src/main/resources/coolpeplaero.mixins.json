@@ -3,6 +3,7 @@
   "package": "dev.lemonnik.coolpeplaero.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "PlungerLauncherItemMixin",
     "SteeringWheelMixin"
   ],
   "injectors": {

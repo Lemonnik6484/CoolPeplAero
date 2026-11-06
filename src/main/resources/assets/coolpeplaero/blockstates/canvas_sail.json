@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "coolpeplaero:block/canvas_sail",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "coolpeplaero:block/canvas_sail",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "coolpeplaero:block/canvas_sail",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "coolpeplaero:block/canvas_sail",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "coolpeplaero:block/canvas_sail"
+    },
+    "facing=west": {
+      "model": "coolpeplaero:block/canvas_sail",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

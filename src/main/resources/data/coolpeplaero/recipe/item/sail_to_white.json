@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    [
+      { "item": "create:orange_sail" },
+      { "item": "create:magenta_sail" },
+      { "item": "create:light_blue_sail" },
+      { "item": "create:yellow_sail" },
+      { "item": "create:lime_sail" },
+      { "item": "create:pink_sail" },
+      { "item": "create:gray_sail" },
+      { "item": "create:light_gray_sail" },
+      { "item": "create:cyan_sail" },
+      { "item": "create:purple_sail" },
+      { "item": "create:blue_sail" },
+      { "item": "create:brown_sail" },
+      { "item": "create:green_sail" },
+      { "item": "create:red_sail" },
+      { "item": "create:black_sail" }
+    ]
+  ],
+  "result": {
+    "count": 1,
+    "id": "create:white_sail"
+  }
+}

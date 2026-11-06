@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "coolpeplaero:block/canvas_symmetric_sail",
-		"1": "simulated:block/symmetric_sail/side_white",
+		"1": "coolpeplaero:block/sail_side_canvas",
 		"particle": "coolpeplaero:block/canvas_symmetric_sail"
 	},
 	"elements": [

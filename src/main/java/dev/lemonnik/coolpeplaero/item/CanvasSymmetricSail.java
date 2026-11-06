@@ -12,6 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -49,6 +51,11 @@ public class CanvasSymmetricSail {
         @Override
         public @NotNull Direction sable$getNormal(BlockState state) {
             return Direction.get(Direction.AxisDirection.POSITIVE, state.getValue(SymmetricSailBlock.AXIS));
+        }
+
+        @Override
+        public @NotNull ItemStack getCloneItemStack(LevelReader level, net.minecraft.core.BlockPos pos, BlockState state) {
+            return new ItemStack(this);
         }
     }
 

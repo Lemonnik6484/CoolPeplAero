@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    [
+      { "item": "simulated:orange_symmetric_sail" },
+      { "item": "simulated:magenta_symmetric_sail" },
+      { "item": "simulated:light_blue_symmetric_sail" },
+      { "item": "simulated:yellow_symmetric_sail" },
+      { "item": "simulated:lime_symmetric_sail" },
+      { "item": "simulated:pink_symmetric_sail" },
+      { "item": "simulated:gray_symmetric_sail" },
+      { "item": "simulated:light_gray_symmetric_sail" },
+      { "item": "simulated:cyan_symmetric_sail" },
+      { "item": "simulated:purple_symmetric_sail" },
+      { "item": "simulated:blue_symmetric_sail" },
+      { "item": "simulated:brown_symmetric_sail" },
+      { "item": "simulated:green_symmetric_sail" },
+      { "item": "simulated:red_symmetric_sail" },
+      { "item": "simulated:black_symmetric_sail" }
+    ]
+  ],
+  "result": {
+    "count": 1,
+    "id": "simulated:white_symmetric_sail"
+  }
+}

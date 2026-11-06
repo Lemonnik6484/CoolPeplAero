@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item": "create:gray_sail"},
+    {"item": "create:gray_sail"}
+  ],
+  "result": {
+    "count": 2,
+    "id": "simulated:gray_symmetric_sail"
+  }
+}

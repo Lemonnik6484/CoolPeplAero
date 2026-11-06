@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item": "create:lime_sail"},
+    {"item": "create:lime_sail"}
+  ],
+  "result": {
+    "count": 2,
+    "id": "simulated:lime_symmetric_sail"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item": "create:magenta_sail"},
+    {"item": "create:magenta_sail"}
+  ],
+  "result": {
+    "count": 2,
+    "id": "simulated:magenta_symmetric_sail"
+  }
+}

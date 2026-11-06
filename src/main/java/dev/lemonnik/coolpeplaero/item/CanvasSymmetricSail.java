@@ -38,17 +38,12 @@ public class CanvasSymmetricSail {
 
         @Override
         public float sable$getParallelDragScalar() {
-            return 0.875f;
+            return 1.55f;
         }
 
         @Override
         public float sable$getDirectionlessDragScalar() {
-            return 0.034f;
-        }
-
-        @Override
-        public float sable$getLiftScalar() {
-            return 0f;
+            return 0.05f;
         }
 
         @Override

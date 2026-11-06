@@ -53,7 +53,7 @@ public class CanvasSymmetricSail {
 
         @Override
         public @NotNull Direction sable$getNormal(BlockState state) {
-            return state.getValue(BlockStateProperties.FACING).getOpposite();
+            return Direction.get(Direction.AxisDirection.POSITIVE, state.getValue(SymmetricSailBlock.AXIS));
         }
     }
 

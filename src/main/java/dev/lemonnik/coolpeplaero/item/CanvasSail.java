@@ -4,7 +4,9 @@ import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 
 import com.simibubi.create.content.contraptions.bearing.SailBlock;
+import dev.ryanhcode.sable.api.block.BlockSubLevelLiftProvider;
 
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -13,6 +15,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.jetbrains.annotations.NotNull;
 import net.minecraft.core.Registry;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
@@ -26,9 +31,29 @@ public class CanvasSail {
     private static final String FD_MODID = "farmersdelight";
     private static final ResourceLocation CANVAS_SAIL_LOCATION = ResourceLocation.parse("coolpeplaero:canvas_sail");
 
-    private static class CanvasSailBlock extends SailBlock {
+    private static class CanvasSailBlock extends SailBlock implements BlockSubLevelLiftProvider {
         public CanvasSailBlock(BlockBehaviour.Properties properties) {
             super(properties, false, DyeColor.WHITE);
+        }
+
+        @Override
+        public float sable$getParallelDragScalar() {
+            return 0.375f;
+        }
+
+        @Override
+        public float sable$getDirectionlessDragScalar() {
+            return 0.034f;
+        }
+
+        @Override
+        public float sable$getLiftScalar() {
+            return 0.2375f;
+        }
+
+        @Override
+        public @NotNull Direction sable$getNormal(BlockState state) {
+            return state.getValue(BlockStateProperties.FACING).getOpposite();
         }
     }
 

@@ -3,8 +3,10 @@ package dev.lemonnik.coolpeplaero.item;
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 
+import dev.ryanhcode.sable.api.block.BlockSubLevelLiftProvider;
 import dev.simulated_team.simulated.content.blocks.symmetric_sail.SymmetricSailBlock;
 
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -13,6 +15,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.jetbrains.annotations.NotNull;
 import net.minecraft.core.Registry;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
@@ -26,15 +31,29 @@ public class CanvasSymmetricSail {
     private static final String FD_MODID = "farmersdelight";
     private static final ResourceLocation CANVAS_SYMMETRIC_SAIL_LOCATION = ResourceLocation.parse("coolpeplaero:canvas_symmetric_sail");
 
-    private static class CanvasSymmetricSailBlock extends SymmetricSailBlock {
+    private static class CanvasSymmetricSailBlock extends SymmetricSailBlock implements BlockSubLevelLiftProvider {
         public CanvasSymmetricSailBlock(BlockBehaviour.Properties properties, DyeColor color) {
             super(properties, color);
         }
 
         @Override
         public float sable$getParallelDragScalar() {
-            // Half as effective as normal symmetric sails (1.75f / 2 = 0.875f)
             return 0.875f;
+        }
+
+        @Override
+        public float sable$getDirectionlessDragScalar() {
+            return 0.034f;
+        }
+
+        @Override
+        public float sable$getLiftScalar() {
+            return 0f;
+        }
+
+        @Override
+        public @NotNull Direction sable$getNormal(BlockState state) {
+            return state.getValue(BlockStateProperties.FACING).getOpposite();
         }
     }
 

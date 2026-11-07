@@ -7,8 +7,9 @@
     }
   },
   "pattern": [
-    "R",
-    "R"
+    " R ",
+    "R R",
+    " R "
   ],
   "result": {
     "count": 4,

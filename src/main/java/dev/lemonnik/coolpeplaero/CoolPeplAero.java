@@ -1,5 +1,14 @@
 package dev.lemonnik.coolpeplaero;
 
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -17,9 +26,16 @@ public class CoolPeplAero {
 
     public CoolPeplAero(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::onRegisterItems);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("Cooling the Pepls!");
+    }
+
+    public void onRegisterItems(RegisterEvent event) {
+        if (event.getRegistryKey().equals(BuiltInRegistries.ITEM.key())) {
+            Registry.register(BuiltInRegistries.ITEM, MODID+":icon", new Item(new Item.Properties()));
+        }
     }
 }

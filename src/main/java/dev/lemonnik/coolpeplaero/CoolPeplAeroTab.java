@@ -38,7 +38,7 @@ public class CoolPeplAeroTab {
             LOGGER.info("Registering Cool Pepl Aero creative tab...");
             TAB = CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.coolpeplaero_tab"))
-                    .icon(() -> new ItemStack(getItemOrBlock("coolpeplaero:canvas_sail")))
+                    .icon(() -> new ItemStack(getItemOrBlock("coolpeplaero:icon")))
                     .displayItems((parameters, output) -> {
                         output.accept(getItemOrBlock("coolpeplaero:canvas_sail"));
                         output.accept(getItemOrBlock("coolpeplaero:canvas_symmetric_sail"));

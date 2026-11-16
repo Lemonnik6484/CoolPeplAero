@@ -26,7 +26,7 @@ public class SteeringWheelMixin {
         if (level == null || !level.isClientSide()) return;
 
         if (clientAngle * oldClientAngle < 0) {
-            level.playLocalSound(self.getBlockPos(), SoundEvents.TRIPWIRE_CLICK_OFF, SoundSource.BLOCKS, 0.5F, 0.2F, false);
+            level.playLocalSound(self.getBlockPos(), SoundEvents.TRIPWIRE_CLICK_OFF, SoundSource.BLOCKS, 0.3F, 0.2F, false);
         }
     }
 }

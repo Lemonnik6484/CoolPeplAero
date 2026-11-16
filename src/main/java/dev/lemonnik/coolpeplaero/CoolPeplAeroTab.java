@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -38,18 +39,16 @@ public class CoolPeplAeroTab {
             LOGGER.info("Registering Cool Pepl Aero creative tab...");
             TAB = CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.coolpeplaero_tab"))
-                    .icon(() -> new ItemStack(getItemOrBlock("coolpeplaero:icon")))
+                    .icon(() -> {
+                        return getItemOrBlock("coolpeplaero:icon").getDefaultInstance();
+                    })
                     .displayItems((parameters, output) -> {
-                        output.accept(getItemOrBlock("coolpeplaero:canvas_sail"));
-                        output.accept(getItemOrBlock("coolpeplaero:canvas_symmetric_sail"));
-                        output.accept(getItemOrBlock("coolpeplaero:canvas_envelope"));
+                        addItem(output, "coolpeplaero:canvas_sail");
+                        addItem(output, "coolpeplaero:canvas_symmetric_sail");
+                        addItem(output, "coolpeplaero:canvas_envelope");
 
                         for (String color : COLORS) {
-                            String sailName = color + "_sail";
-                            Item sailItem = getItemOrBlock("create:" + sailName);
-                            if (sailItem != null) {
-                                output.accept(sailItem);
-                            }
+                            addItem(output, "create:" + color + "_sail");
                         }
                     })
                     .build();
@@ -60,15 +59,27 @@ public class CoolPeplAeroTab {
         }
     }
 
+    private static void addItem(CreativeModeTab.Output output, String id) {
+        Item item = getItemOrBlock(id);
+        if (item == null) {
+            LOGGER.warn("Skipping missing creative tab item {}", id);
+            return;
+        }
+        output.accept(item);
+    }
+
     private static Item getItemOrBlock(String id) {
         ResourceLocation location = ResourceLocation.parse(id);
         Item item = BuiltInRegistries.ITEM.get(location);
-        if (item != null && item != Blocks.AIR.asItem()) {
+        if (item != null && item != Items.AIR) {
             return item;
         }
         Block block = BuiltInRegistries.BLOCK.get(location);
         if (block != null && block != Blocks.AIR) {
-            return block.asItem();
+            Item blockItem = block.asItem();
+            if (blockItem != Items.AIR) {
+                return blockItem;
+            }
         }
         return null;
     }

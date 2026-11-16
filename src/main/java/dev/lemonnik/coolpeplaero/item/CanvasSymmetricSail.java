@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.NotNull;
 import net.minecraft.core.Registry;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
@@ -30,7 +29,6 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 public class CanvasSymmetricSail {
 
     private static final Logger LOGGER = LogUtils.getLogger();
-    private static final String FD_MODID = "farmersdelight";
     private static final ResourceLocation CANVAS_SYMMETRIC_SAIL_LOCATION = ResourceLocation.parse("coolpeplaero:canvas_symmetric_sail");
 
     private static class CanvasSymmetricSailBlock extends SymmetricSailBlock implements BlockSubLevelLiftProvider {
@@ -61,9 +59,6 @@ public class CanvasSymmetricSail {
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegisterEvent event) {
-        if (!ModList.get().isLoaded(FD_MODID)) {
-            return;
-        }
         if (event.getRegistryKey().equals(BuiltInRegistries.BLOCK.key())) {
             LOGGER.info("Registering canvas_symmetric_sail block...");
             Block block = new CanvasSymmetricSailBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL), DyeColor.WHITE);
@@ -74,9 +69,6 @@ public class CanvasSymmetricSail {
 
     @SubscribeEvent
     public static void onRegisterItems(RegisterEvent event) {
-        if (!ModList.get().isLoaded(FD_MODID)) {
-            return;
-        }
         if (event.getRegistryKey().equals(BuiltInRegistries.ITEM.key())) {
             LOGGER.info("Registering canvas_symmetric_sail item...");
             Block block = BuiltInRegistries.BLOCK.get(CANVAS_SYMMETRIC_SAIL_LOCATION);

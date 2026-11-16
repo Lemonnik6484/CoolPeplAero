@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
@@ -23,7 +22,6 @@ import org.slf4j.Logger;
 public class CanvasEnvelope {
 
     private static final Logger LOGGER = LogUtils.getLogger();
-    private static final String FD_MODID = "farmersdelight";
     private static final ResourceLocation CANVAS_ENVELOPE_LOCATION = ResourceLocation.parse("coolpeplaero:canvas_envelope");
 
     private static class CanvasEnvelopeBlock extends EnvelopeBlock implements Envelope, SpecialBlockItemRequirement {
@@ -34,9 +32,6 @@ public class CanvasEnvelope {
 
     @SubscribeEvent
     public static void onRegisterBlocks(RegisterEvent event) {
-        if (!ModList.get().isLoaded(FD_MODID)) {
-            return;
-        }
         if (event.getRegistryKey().equals(BuiltInRegistries.BLOCK.key())) {
             LOGGER.info("Registering canvas_envelope block...");
             Block block = new CanvasEnvelopeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL));
@@ -47,9 +42,6 @@ public class CanvasEnvelope {
 
     @SubscribeEvent
     public static void onRegisterItems(RegisterEvent event) {
-        if (!ModList.get().isLoaded(FD_MODID)) {
-            return;
-        }
         if (event.getRegistryKey().equals(BuiltInRegistries.ITEM.key())) {
             LOGGER.info("Registering canvas_envelope item...");
             Block block = BuiltInRegistries.BLOCK.get(CANVAS_ENVELOPE_LOCATION);

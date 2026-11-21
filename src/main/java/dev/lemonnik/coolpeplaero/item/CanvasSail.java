@@ -1,6 +1,9 @@
 package dev.lemonnik.coolpeplaero.item;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.material.MapColor;
+import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 
 import com.simibubi.create.content.contraptions.bearing.SailBlock;
@@ -69,6 +72,16 @@ public class CanvasSail {
                 return new ItemStack(item);
             }
             return ItemStack.EMPTY;
+        }
+
+        @Override
+        public MapColor getMapColor(BlockState state, BlockGetter level, BlockPos pos, MapColor defaultColor) {
+            return MapColor.COLOR_BROWN;
+        }
+
+        @Override
+        public MapColor defaultMapColor() {
+            return MapColor.COLOR_BROWN;
         }
     }
 

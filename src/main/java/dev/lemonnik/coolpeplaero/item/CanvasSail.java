@@ -7,16 +7,24 @@ import com.simibubi.create.content.contraptions.bearing.SailBlock;
 import dev.ryanhcode.sable.api.block.BlockSubLevelLiftProvider;
 
 import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import net.minecraft.core.Registry;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -31,7 +39,7 @@ public class CanvasSail {
 
     private static class CanvasSailBlock extends SailBlock implements BlockSubLevelLiftProvider {
         public CanvasSailBlock(BlockBehaviour.Properties properties) {
-            super(properties, false, DyeColor.WHITE);
+            super(properties, false, DyeColor.BROWN);
         }
 
         @Override
@@ -47,6 +55,20 @@ public class CanvasSail {
         @Override
         public @NotNull Direction sable$getNormal(BlockState state) {
             return state.getValue(BlockStateProperties.FACING).getOpposite();
+        }
+
+        @Override
+        protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
+        @Override
+        public @NotNull ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+            Item item = BuiltInRegistries.ITEM.get(CANVAS_SAIL_LOCATION);
+            if (item != null && item != Blocks.AIR.asItem()) {
+                return new ItemStack(item);
+            }
+            return ItemStack.EMPTY;
         }
     }
 

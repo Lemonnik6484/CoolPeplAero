@@ -58,7 +58,8 @@ public class CoolPeplAero {
             UUID.fromString("3809b338-026c-4628-be34-17b70a71f1ef"), // mnkrftua
             UUID.fromString("ca731154-3761-46a3-a7b0-7bcaf583d7ea"), // Kamilskii
             UUID.fromString("1ccf49e2-012b-4a22-8b0c-6acd652f5f24"), // SlavonBubon
-            UUID.fromString("2703d3d8-8e36-45e6-a68d-c450514c4c81") // Tomzitiger
+            UUID.fromString("2703d3d8-8e36-45e6-a68d-c450514c4c81"), // Tomzitiger
+            UUID.fromString("29d9b385-e355-43f8-9355-8b5ae27fd17c") // derNeueTNT
     );
 
 }

@@ -2,7 +2,13 @@ package dev.lemonnik.coolpeplaero;
 
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.portal.DimensionTransition;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
@@ -24,6 +30,8 @@ public class CoolPeplAero {
     public CoolPeplAero(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::onRegisterItems);
+
+        NeoForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -62,4 +70,20 @@ public class CoolPeplAero {
             UUID.fromString("29d9b385-e355-43f8-9355-8b5ae27fd17c") // derNeueTNT
     );
 
+    @SubscribeEvent
+    public void onIncomingDamage(LivingIncomingDamageEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        if (!event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD)) return;
+
+        if (player.getY() >= player.level().getMinBuildHeight() - 64) return;
+
+        DimensionTransition transition = player.findRespawnPositionAndUseSpawnBlock(true, DimensionTransition.DO_NOTHING);
+
+        event.setCanceled(true);
+        player.changeDimension(transition);
+
+        if (player.getY() < player.level().getMinBuildHeight() - 64) return;
+
+        player.hurt(player.damageSources().fellOutOfWorld(), Float.MAX_VALUE);
+    }
 }
